@@ -1,0 +1,61 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+        <label>Enter movie details</label>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" [value]="correctEdit.title" formControlName="title" placeholder="Movie title" [ngClass]="{ 'is-invalid': f.title.errors }">
+          <div *ngIf="f.title.errors" class="invalid-feedback">
+              <div *ngIf="f.title.errors.err">Title must be more then 2 chars</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Year</label>
+          <input type="number" class="form-control" [value]="correctEdit.year" formControlValue="correctEdit.year" formControlName="year" placeholder="Year of movie" [ngClass]="{ 'is-invalid': f.year.errors }">
+          <div *ngIf="f.year.errors" class="invalid-feedback">
+              <div *ngIf="f.year.errors.err">Year must be a valid year</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Duration</label>
+          <input type="text" class="form-control" [value]="correctEdit.runtime" formControlName="runtime" placeholder="Duration of movie" [ngClass]="{ 'is-invalid': f.runtime.errors }">
+          <div *ngIf="f.runtime.errors" class="invalid-feedback">
+              <div *ngIf="f.runtime.errors.err">Duration must be more then 2 chars</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Genre</label>
+          <input type="text" class="form-control" [value]="correctEdit.genre" formControlName="genre" placeholder="Movie genre/s" [ngClass]="{ 'is-invalid': f.genre.errors }">
+          <div *ngIf="f.genre.errors" class="invalid-feedback">
+              <div *ngIf="f.genre.errors.err">Genre must be more then 2 chars</div>
+          </div>
+        </div>
+        <div class="form-group"> 
+          <label>Director</label>
+          <input type="text" class="form-control" [value]="correctEdit.director" formControlName="director" placeholder="Director of movie" [ngClass]="{ 'is-invalid': f.director.errors }">
+          <div *ngIf="f.director.errors" class="invalid-feedback">
+              <div *ngIf="f.director.errors.err">Director must be more then 2 chars</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Image</label>
+          <input type="text" class="form-control" [value]="correctEdit.image" formControlName="image" placeholder="Poster of movie" [ngClass]="{ 'is-invalid': f.image.errors }">
+          <div *ngIf="f.image.errors" class="invalid-feedback">
+              <div *ngIf="f.image.errors.err">Image must be PNG or JPEG file</div>
+          </div>
+        </div>
+        <div class="form-group modal-footer">    
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cancel</button>
+          <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">{{submitButton}}</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <button (click)="open(content)" class="btn btn-outline-info my-2 my-sm-0">Add New <span class="icon-add"></span></button>

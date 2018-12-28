@@ -1,0 +1,44 @@
+<div *ngIf="loading">
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+  <p>dawdawdawdawdawd</p>
+</div>
+<div class="container mt-3" *ngIf="movies">
+  <div class="movieContainer d-flex flex-wrap" >
+    <div class="movie p-2 border shadow" *ngFor='let movie of movies'>
+      <p class="title">
+        {{movie.title | unsymbol | titlecase}}({{movie.year}})
+      </p>
+      <p class="subtitle">
+        {{movie.runtime}} | {{movie.genre}}
+      </p>
+      <p class="director">
+        Director: {{movie.director}}
+      </p>
+      <div>
+        <img class="shadow" src="{{movie.image}}" alt="{{movie.title}} image" height="245px" width="200px">
+      </div>
+      <div class="footer">
+        <button class="small-btn float-right btn btn-link btn-sm" (click)="content.open(movie.id, movie.title)"><span class="icon-delete"></span></button>
+        <button class="small-btn float-left btn btn-link btn-sm" (click)="editMovie(movie.id)"><span class="icon-edit"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="movies === []">
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+    <p>dawdawdawdawdawd</p>
+</div>
+
+<app-modal-delete #content></app-modal-delete>
