@@ -103,19 +103,19 @@ export class ModalAddComponent implements OnInit {
     let allGood: Boolean = true;
     this.movies.forEach(movie => {
       if (this.unSymbolPipe.transform(movie.title.toLowerCase()) === this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
-        if (this.correctEdit.id &&
+        if (this.correctEdit.id || this.correctEdit.id === 0 &&
           this.unSymbolPipe.transform(this.correctEdit.title.toLowerCase()) !==
           this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
           this.f.title.setErrors({title: true});
           allGood = false;
         }
-        if (!this.correctEdit.id) {
+        if (!this.correctEdit.id && this.correctEdit.id !== 0) {
           this.f.title.setErrors({title: true});
           allGood = false;
         }
       }
     });
-    if (!this.f.title.value || this.f.title.value.trim().length < 2) {
+    if (!this.f.title.value || this.f.title.value.toString().trim().length < 2) {
       this.f.title.setErrors({err: true});
       allGood = false;
     }
@@ -127,15 +127,15 @@ export class ModalAddComponent implements OnInit {
       this.f.year.setErrors({year: true});
       allGood = false;
     }
-    if (!this.f.runtime.value || this.f.runtime.value.trim().length < 2) {
+    if (!this.f.runtime.value || this.f.runtime.value.toString().trim().length < 2) {
       this.f.runtime.setErrors({err: true});
       allGood = false;
     }
-    if (!this.f.genre.value || this.f.genre.value.trim().length < 2) {
+    if (!this.f.genre.value || this.f.genre.value.toString().trim().length < 2) {
       this.f.genre.setErrors({err: true});
       allGood = false;
     }
-    if (!this.f.director.value || this.f.director.value.trim().length < 2) {
+    if (!this.f.director.value || this.f.director.value.toString().trim().length < 2) {
       this.f.director.setErrors({err: true});
       allGood = false;
     }
@@ -151,9 +151,9 @@ export class ModalAddComponent implements OnInit {
         id: this.lastId,
         title: this.f.title.value,
         year: this.f.year.value,
-        runtime: this.f.year.value,
+        runtime: this.f.runtime.value,
         genre: this.f.genre.value,
-        director: this.f.genre.value,
+        director: this.f.director.value,
         image: this.f.image.value
       };
       if (!this.correctEdit.id && this.correctEdit.id !== 0) {
