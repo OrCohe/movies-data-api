@@ -306,6 +306,9 @@ THE SOFTWARE.
 @angular/router
 MIT
 
+ngx-spinner
+MIT
+
 zone.js
 MIT
 The MIT License
