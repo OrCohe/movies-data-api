@@ -15,7 +15,7 @@ export class ServerService {
   constructor(private http: HttpClient, private store: Store<AppState>) {
     // tslint:disable-next-line:max-line-length
     this.apiOne = 'https://api.themoviedb.org/3/movie/top_rated?api_key=a6537ae887155f02d3a0a508c195dd27&language=en-US&page=1&region=israel';
-    this.apiTwo = 'http://www.omdbapi.com/?apikey=40dc7be8&t=';
+    this.apiTwo = 'https://www.omdbapi.com/?apikey=40dc7be8&t=';
   }
 
   getMovies() {
