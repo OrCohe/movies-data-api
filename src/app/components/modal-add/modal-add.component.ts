@@ -88,6 +88,13 @@ export class ModalAddComponent implements OnInit {
     this.correctEdit.genre = null;
     this.correctEdit.director = null;
     this.correctEdit.image = null;
+    this.movieForm.setValue({
+      title: null,
+      year: null,
+      runtime: null,
+      genre: null,
+      director: null,
+      image: null});
   }
 
   open(content: any , reason: Number = null, movie: Movie = null) {
@@ -102,7 +109,8 @@ export class ModalAddComponent implements OnInit {
   onSubmit() {
     let allGood: Boolean = true;
     this.movies.forEach(movie => {
-      if (this.unSymbolPipe.transform(movie.title.toLowerCase()) === this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
+      if (this.f.title.value &&
+        this.unSymbolPipe.transform(movie.title.toLowerCase()) === this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
         if (this.correctEdit.id &&
           this.unSymbolPipe.transform(this.correctEdit.title.toLowerCase()) !==
           this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
