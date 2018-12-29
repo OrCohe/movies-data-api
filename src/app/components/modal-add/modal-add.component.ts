@@ -103,7 +103,9 @@ export class ModalAddComponent implements OnInit {
     let allGood: Boolean = true;
     this.movies.forEach(movie => {
       if (this.unSymbolPipe.transform(movie.title.toLowerCase()) === this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
-        if (this.correctEdit.id && this.unSymbolPipe.transform(this.correctEdit.title.toLowerCase()) !== this.f.title.value.toLowerCase()) {
+        if (this.correctEdit.id &&
+          this.unSymbolPipe.transform(this.correctEdit.title.toLowerCase()) !==
+          this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
           this.f.title.setErrors({title: true});
           allGood = false;
         }

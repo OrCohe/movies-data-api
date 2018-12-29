@@ -14,6 +14,7 @@ import { MoviesComponent } from './components/main/movies/movies.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddComponent } from './components/modal-add/modal-add.component';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ModalDeleteComponent } from './components/modal-delete/modal-delete.com
     AppRoutingModule,
     StoreModule.forRoot({
       movies: reducer
-    })
+    }),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

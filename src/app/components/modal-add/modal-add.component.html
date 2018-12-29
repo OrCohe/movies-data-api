@@ -10,7 +10,7 @@
         <label>Enter movie details</label>
         <div class="form-group">
           <label>Title</label>
-          <input type="text" class="form-control" [value]="correctEdit.title" formControlName="title" placeholder="Movie title" [ngClass]="{ 'is-invalid': f.title.errors }">
+          <input type="text" class="form-control" [value]="correctEdit.title" formControlName="title" placeholder="Movie title" [ngClass]="{ 'is-invalid': f.title.errors }" ngbAutofocus>
           <div *ngIf="f.title.errors" class="invalid-feedback">
               <div *ngIf="f.title.errors.err">Title must be more then 2 chars</div>
               <div *ngIf="f.title.errors.title">This title is already exist</div>

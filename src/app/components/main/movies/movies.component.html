@@ -1,14 +1,10 @@
-<div *ngIf="loading">
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-  <p>dawdawdawdawdawd</p>
-</div>
-<div class="container mt-3" *ngIf="movies">
+<ngx-spinner
+  bdColor = "rgba(90,90,90,0.8)"
+  size = "medium"
+  color = "#fff"
+  type = "pacman"
+></ngx-spinner>
+<div class="container mt-3" *ngIf="movies.length > 0;else showempty">
   <div class="movieContainer d-flex flex-wrap" >
     <div class="movie p-2 border shadow" *ngFor='let movie of movies'>
       <p class="title">
@@ -30,15 +26,11 @@
     </div>
   </div>
 </div>
-<div *ngIf="movies === []">
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-    <p>dawdawdawdawdawd</p>
-</div>
+<ng-template #showempty>
+  <div class="nodata p-2 border shadow center">
+    <h2>No movies found!</h2>
+    <p><app-modal-add></app-modal-add></p>
+  </div>
+</ng-template>
 
 <app-modal-delete #content></app-modal-delete>
