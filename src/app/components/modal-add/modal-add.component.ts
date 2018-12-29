@@ -103,7 +103,7 @@ export class ModalAddComponent implements OnInit {
     let allGood: Boolean = true;
     this.movies.forEach(movie => {
       if (this.unSymbolPipe.transform(movie.title.toLowerCase()) === this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
-        if (this.correctEdit.id || this.correctEdit.id === 0 &&
+        if (this.correctEdit.id &&
           this.unSymbolPipe.transform(this.correctEdit.title.toLowerCase()) !==
           this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
           this.f.title.setErrors({title: true});
@@ -148,7 +148,7 @@ export class ModalAddComponent implements OnInit {
     }
     if (allGood) {
       const newMovie: Movie = {
-        id: this.lastId,
+        id: this.lastId + 1,
         title: this.f.title.value,
         year: this.f.year.value,
         runtime: this.f.runtime.value,
@@ -156,7 +156,7 @@ export class ModalAddComponent implements OnInit {
         director: this.f.director.value,
         image: this.f.image.value
       };
-      if (!this.correctEdit.id && this.correctEdit.id !== 0) {
+      if (!this.correctEdit.id) {
         this.store.dispatch(new AddMovie(newMovie));
       } else {
         const newMovies: Movie[] = [];

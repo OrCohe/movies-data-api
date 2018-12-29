@@ -26,7 +26,7 @@ export class ServerService {
       res.results.forEach((movie, key) => {
         this.http.get(this.apiTwo + movie.title).subscribe((data: any) => {
           const newMovie: Movie = {
-            id: key,
+            id: key + 1,
             title: data.Title,
             year: data.Year,
             runtime: data.Runtime,
