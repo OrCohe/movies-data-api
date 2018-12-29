@@ -1,3 +1,4 @@
+import { TitlePipe } from './../../Shared/Pipes/Title/title.pipe';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +22,7 @@ export class ModalAddComponent implements OnInit {
   private movies: Movie[];
   private lastId: number;
   correctEdit: any;
+  unSymbolPipe = new TitlePipe();
   constructor(private store: Store<AppState>, private modalService: NgbModal) {
     this.title = 'Add new Movie';
     this.submitButton = 'Add';
@@ -99,12 +101,28 @@ export class ModalAddComponent implements OnInit {
 
   onSubmit() {
     let allGood: Boolean = true;
+    this.movies.forEach(movie => {
+      if (this.unSymbolPipe.transform(movie.title.toLowerCase()) === this.unSymbolPipe.transform(this.f.title.value.toLowerCase())) {
+        if (this.correctEdit.id && this.unSymbolPipe.transform(this.correctEdit.title.toLowerCase()) !== this.f.title.value.toLowerCase()) {
+          this.f.title.setErrors({title: true});
+          allGood = false;
+        }
+        if (!this.correctEdit.id) {
+          this.f.title.setErrors({title: true});
+          allGood = false;
+        }
+      }
+    });
     if (!this.f.title.value || this.f.title.value.trim().length < 2) {
       this.f.title.setErrors({err: true});
       allGood = false;
     }
     if (!this.f.year.value || this.f.year.value.toString().length !== 4) {
       this.f.year.setErrors({err: true});
+      allGood = false;
+    }
+    if (1900 > this.f.year.value || this.f.year.value > 2025) {
+      this.f.year.setErrors({year: true});
       allGood = false;
     }
     if (!this.f.runtime.value || this.f.runtime.value.trim().length < 2) {
